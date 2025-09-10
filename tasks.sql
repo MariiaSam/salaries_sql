@@ -54,6 +54,18 @@ FROM salaries
 WHERE empl_location = 'UA'
 ORDER BY salary_in_usd ASC;
 
+--4/ Вивести топ 5 з/п серед усіх спеціалістів, які працюють повністю віддалено (remote_ratio = 100)
+SELECT 
+     salary_in_usd AS salary
+    , job_title
+	, remote_ratio
+FROM salaries 
+Where 
+	remote_ratio = 100
+ORDER BY salary_in_usd DESC 
+LIMIT 5;
+
+-- 5/ Вивести кількість унікальних значень для кожної колонки, що містить текстові значення.
 
 
 
