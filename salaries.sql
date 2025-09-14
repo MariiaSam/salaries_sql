@@ -1,3 +1,19 @@
+CREATE TABLE salaries(
+
+year integer, 
+exp_level text,
+emp_type text, 
+job_title text, 
+salary integer, 
+salary_curr text,
+salary_in_usd integer,
+emp_location text, 
+remote_ratio integer, 
+comp_location text, 
+comp_size text
+);
+
+
 INSERT INTO salaries ("year",job_title,salary_in_usd) VALUES
 	 (2023,'Data Scientist',370000),
 	 (2023,'Data Scientist',317070),

@@ -95,5 +95,9 @@ LIMIT 10;
 -- 10/ Дослідити всі колонки на наявність відсутніх значень, порівнявши кількість рядків таблиці з кількістю значень відповідної колонки
 
 
+SELECT COUNT(*)
+FROM salaries s;
 
+SELECT  COUNT(*) - COUNT(s.salary_in_usd ) as isnull
+FROM salaries s;
 
