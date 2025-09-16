@@ -73,3 +73,47 @@ WHERE 1=1
 --	AND year <= 2023
 LIMIT 20;
 
+SELECT DISTINCT job_title 
+FROM salaries
+WHERE 1=1
+	AND job_title LIKE ('Data_A% ')
+--	AND year >= 2020
+--	AND year <= 2023
+LIMIT 20;
+
+
+SELECT DISTINCT job_title 
+FROM salaries
+WHERE 1=1
+	AND job_title NOT LIKE ('Data_A% ')
+--	AND year >= 2020
+--	AND year <= 2023
+LIMIT 20;
+
+SELECT DISTINCT job_title 
+FROM salaries
+WHERE 1=1
+	AND job_title ILIKE ('data_A% ')
+--	AND year >= 2020
+--	AND year <= 2023
+LIMIT 20;
+
+
+SELECT COUNT(*) 
+FROM salaries
+WHERE 1=1
+	AND year IS NULL -- шукає пусті значення
+LIMIT 20;
+
+
+SELECT COUNT(*) 
+FROM salaries
+WHERE 1=1
+	AND year IS NOT NULL -- шукає  значення, які не є пусті
+LIMIT 20;
+
+SELECT COUNT(year) --
+FROM salaries
+WHERE 1=1
+	--AND year IS NOT NULL
+LIMIT 20;
