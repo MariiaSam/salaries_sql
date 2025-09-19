@@ -200,3 +200,8 @@ SELECT
     COUNT(*) AS employees_count
 FROM salaries
 GROUP BY salary_category;
+
+--corr
+SELECT 
+	corr(remote_ratio, salary_in_usd)
+FROM salaries;
