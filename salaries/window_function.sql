@@ -34,3 +34,18 @@ WHERE year = 2023
 
 SELECT * 
 FROM cte
+
+--
+--
+WITH cte AS(
+SELECT  
+	job_title
+	, salary_in_usd
+	, AVG(salary_in_usd) OVER(partition by job_title) as avg_salary
+	FROM salaries
+WHERE year = 2023
+)
+
+SELECT * 
+FROM cte
+WHERE salary_in_usd > avg_salary

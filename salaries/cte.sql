@@ -33,3 +33,21 @@ WHERE melo.CustomerId IN (SELECT CustomerId FROM invoices)
 -- LEFT JOIN invoices ON melo.CustomerId = invoices.CustomerId
 -- WHERE invoices.CustomerId IS NOT NULL
 
+--
+
+
+WITH cte AS(
+SELECT 
+	i.InvoiceId 
+	, i.CustomerId 
+	, i.Total
+	, ROW_NUMBER() OVER(PARTITION BY i.CustomerId ORDER BY Total DESC) AS invoice_nmb
+	, RANK()       OVER(PARTITION BY i.CustomerId ORDER BY Total DESC) AS invoice_rank
+	, DENSE_RANK() OVER(PARTITION BY i.CustomerId ORDER BY Total DESC) AS dense_rank
+FROM Invoice i 
+ORDER BY i.CustomerId 
+)
+SELECT *
+FROM cte 
+WHERE invoice_nmb = 2
+
