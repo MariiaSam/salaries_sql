@@ -49,3 +49,26 @@ WHERE year = 2023
 SELECT * 
 FROM cte
 WHERE salary_in_usd > avg_salary
+
+--
+SELECT 
+	InvoiceId 
+	, CustomerId 
+	, InvoiceDate 
+	, Total
+	, LAG(Total, 1) OVER(Partition by CustomerId Order by InvoiceDate) AS lag_total
+	, LAG(InvoiceDate, 1) OVER(Partition by CustomerId Order by InvoiceDate) AS lag_total
+	, JULIANDAY(InvoiceDate) - JULIANDAY(LAG(InvoiceDate, 1) OVER(Partition by CustomerId Order by InvoiceDate)) diff_in_days
+	, LEAD(Total, 1) OVER(Partition by CustomerId Order by InvoiceDate) AS lead_total
+	FROM Invoice 
+ORDER by CustomerId 
+
+--
+
+SELECT 
+	i.InvoiceId 
+	, i.CustomerId 
+	, InvoiceDate 
+	, i.Total
+	, FIRST_VALUE(Total) OVER(Partition by CustomerId Order by InvoiceDate ASC) AS first_amount
+FROM Invoice i 
